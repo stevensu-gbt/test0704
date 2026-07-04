@@ -1,5 +1,5 @@
 Schedule update test
-Event: workflow_dispatch
-Run ID: 28708698128
-UTC time: 2026-07-04 14:06:44 UTC
-Taipei time: 2026-07-04 22:06:44 CST
+Event: schedule
+Run ID: 28714515045
+UTC time: 2026-07-04 17:46:20 UTC
+Taipei time: 2026-07-05 01:46:20 CST
