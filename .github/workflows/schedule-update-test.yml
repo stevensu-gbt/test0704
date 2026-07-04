@@ -1,0 +1,38 @@
+name: Schedule Update Test
+run-name: Schedule Update Test (${{ github.event_name == 'workflow_dispatch' && 'Manual' || 'Schedule' }} - ${{ github.run_id }})
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update last-run marker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Write last run time
+        run: |
+          echo "Schedule update test" > last-run.txt
+          echo "Event: ${{ github.event_name }}" >> last-run.txt
+          echo "Run ID: ${{ github.run_id }}" >> last-run.txt
+          echo "UTC time: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> last-run.txt
+          echo "Taipei time: $(TZ='Asia/Taipei' date '+%Y-%m-%d %H:%M:%S %Z')" >> last-run.txt
+
+      - name: Commit update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add last-run.txt
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update schedule marker [skip ci]"
+            git push
+          fi
