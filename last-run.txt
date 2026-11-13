@@ -1,5 +1,5 @@
 Schedule update test
 Event: schedule
-Run ID: 43353808778
-UTC time: 2026-11-13 02:40:42 UTC
-Taipei time: 2026-11-13 10:40:42 CST
+Run ID: 43405646869
+UTC time: 2026-11-13 09:59:44 UTC
+Taipei time: 2026-11-13 17:59:44 CST
